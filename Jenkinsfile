@@ -1,23 +1,46 @@
 pipeline {
     agent any
 
+    environment {
+        // Optional: define Python path or virtualenv if needed
+        PYTHONUNBUFFERED = '1'
+    }
+
     stages {
-        stage('Clone Repo') {
+        stage('Clone Repository') {
             steps {
-                git 'https://github.com/username/your-repo.git'
+                git 'https://github.com/nithinaparadapu/house-price-prediction.git'
             }
         }
 
-        stage('Install Dependencies') {
+        stage('Set Up Python Environment') {
             steps {
-                sh 'pip install -r requirements.txt'
+                // You can create a virtual environment (optional)
+                sh '''
+                    python -m venv venv
+                    source venv/bin/activate
+                    pip install --upgrade pip
+                    pip install -r requirements.txt
+                '''
             }
         }
 
-        stage('Run Script') {
+        stage('Run House Price Script') {
             steps {
-                sh 'python house_price_model.py'
+                sh '''
+                    source venv/bin/activate
+                    python house_price_model.py
+                '''
             }
+        }
+    }
+
+    post {
+        success {
+            echo '✅ Pipeline completed successfully!'
+        }
+        failure {
+            echo '❌ Pipeline failed. Check the console output for details.'
         }
     }
 }
