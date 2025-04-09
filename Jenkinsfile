@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     environment {
-        // Optional: define Python path or virtualenv if needed
         PYTHONUNBUFFERED = '1'
     }
 
@@ -15,10 +14,9 @@ pipeline {
 
         stage('Set Up Python Environment') {
             steps {
-                // You can create a virtual environment (optional)
-                sh '''
+                bat '''
                     python -m venv venv
-                    source venv/bin/activate
+                    call venv\\Scripts\\activate
                     pip install --upgrade pip
                     pip install -r requirements.txt
                 '''
@@ -27,8 +25,8 @@ pipeline {
 
         stage('Run House Price Script') {
             steps {
-                sh '''
-                    source venv/bin/activate
+                bat '''
+                    call venv\\Scripts\\activate
                     python house_price_model.py
                 '''
             }
