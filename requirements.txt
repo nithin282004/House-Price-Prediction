@@ -1,7 +1,0 @@
-Flask
-pandas
-numpy
-scikit-learn
-joblib
-flask-sqlalchemy
-psycopg2-binary
