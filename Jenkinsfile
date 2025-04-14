@@ -16,6 +16,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
+                    echo "Building Docker Image..."
                     bat "docker build -t ${IMAGE_NAME} ."
                 }
             }
@@ -24,6 +25,7 @@ pipeline {
         stage('Stop and Remove Old Container') {
             steps {
                 script {
+                    echo "Stopping and removing old container..."
                     bat """
                     docker stop ${CONTAINER_NAME} || echo "No container to stop"
                     docker rm ${CONTAINER_NAME} || echo "No container to remove"
@@ -35,7 +37,15 @@ pipeline {
         stage('Run App with Docker Compose') {
             steps {
                 script {
+                    echo "Running app with Docker Compose..."
                     bat "docker-compose up -d"
+                    
+                    // Capture Docker Compose logs
+                    echo "Docker Compose Logs:"
+                    bat "docker-compose logs --tail=10"
+                    
+                    // Show the status of containers
+                    bat "docker-compose ps"
                 }
             }
         }
