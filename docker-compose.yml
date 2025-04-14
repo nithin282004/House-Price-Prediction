@@ -19,7 +19,7 @@ services:
     depends_on:
       - db
     environment:
-      DATABASE_URL: "postgresql://user:password@db:5432/house_prices"
+      DATABASE_URL: "postgresql://user:password@db:5433/house_prices"
     ports:
       - "5001:5001"
     volumes:
