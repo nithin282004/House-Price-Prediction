@@ -27,8 +27,8 @@ pipeline {
         script {
             echo "Stopping and removing old container..."
             bat """
-            docker ps -q -f name=${CONTAINER_NAME} | grep -q . && docker stop ${CONTAINER_NAME} || echo "No container to stop"
-            docker ps -a -q -f name=${CONTAINER_NAME} | grep -q . && docker rm ${CONTAINER_NAME} || echo "No container to remove"
+            docker ps -q -f name=${CONTAINER_NAME}
+            docker ps -a -q -f name=${CONTAINER_NAME}
             """
         }
     }
