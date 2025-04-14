@@ -7,7 +7,7 @@ WORKDIR /app
 # Copy application files
 COPY requirements.txt .
 COPY app.py .
-COPY House_price_prediction.pkl .
+# COPY House_price_prediction.pkl .
 COPY templates ./templates  
 
 # Install dependencies
