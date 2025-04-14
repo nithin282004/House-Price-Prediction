@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git 'https://github.com/nithin282004/House-Price-Prediction'
+                git branch: 'main', url: 'https://github.com/nithin282004/House-Price-Prediction'
             }
         }
 
