@@ -8,7 +8,7 @@ WORKDIR /app
 COPY requirements.txt .
 COPY app.py .
 COPY House_price_prediction.pkl .
-COPY index.html ./templates/index.html
+# COPY index.html ./templates/index.html
 COPY templates ./templates  
 
 # Install dependencies
